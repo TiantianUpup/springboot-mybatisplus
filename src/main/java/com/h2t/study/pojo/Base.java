@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.enums.IdType;
 import java.util.Date;
 
 /**
- * TODO Description
+ * pojo基本字段
  *
  * @author hetiantian
  * @version 1.0
@@ -21,9 +21,9 @@ public class Base {
     private Long id;
 
     //使用@TableLogic注解实现逻辑删除
-    @TableLogic(value = "1")
+    @TableLogic
     @TableField(value = "deleted", exist = true)
-    protected Integer deleted;
+    protected Integer deleted = 0;
 
     @TableField(value = "gmt_create", exist = true)
     protected Date gmtCreate;
