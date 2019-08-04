@@ -1,6 +1,7 @@
 # SpringBoot整合MyBatisPlus框架
 
-### Reference Documentation
-[SpringBoot整合MyBatis-plus](https://www.cnblogs.com/V1haoge/p/10125279.html)
-
+### 环境
+- jdk 1.8
+- mybatis-plus 2.3
+- mybatisplus-spring-boot-starter 1.0.5
 
