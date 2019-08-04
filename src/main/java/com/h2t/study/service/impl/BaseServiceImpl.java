@@ -1,11 +1,15 @@
 package com.h2t.study.service.impl;
 
-import com.baomidou.mybatisplus.mapper.BaseMapper;
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.mapper.Wrapper;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.h2t.study.service.BaseService;
 
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -24,8 +28,8 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M, 
      * @return
      * */
     @Override
-    public boolean save(T obj) {
-        return this.insert(obj);
+    public boolean insert(T obj) {
+        return this.save(obj);
     }
 
     /**
@@ -35,8 +39,8 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M, 
      * @return
      * */
     @Override
-    public boolean saveBatch(List<T> objList) {
-        return this.insertBatch(objList);
+    public boolean insertBatch(List<T> objList) {
+        return this.saveBatch(objList);
     }
 
 
@@ -44,11 +48,11 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M, 
      * 根据id删除
      *
 
-     * @param id
+     * @param obj
      */
     @Override
-    public boolean removeById(Long id) {
-        return this.deleteById(id);
+    public boolean modifyById(T obj) {
+        return this.updateById(obj);
     }
 
     /**
@@ -58,9 +62,9 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M, 
      * @return
      * */
     @Override
-    public boolean remove(T obj) {
-        Wrapper wrapper = new EntityWrapper<>(obj);
-        return this.delete(wrapper);
+    public boolean delete(T obj) {
+        Wrapper wrapper = new QueryWrapper<>(obj);
+        return this.remove(wrapper);
     }
 
     /**
@@ -70,8 +74,19 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M, 
      * @return
      * */
     @Override
-    public boolean removeBatch(List<Long> idList) {
-        return this.deleteBatchIds(idList);
+    public boolean deleteByIds(List<Long> idList) {
+        return this.removeByIds(idList);
+    }
+
+    /**
+     * 批量id删除
+     *
+     * @param id
+     * @return
+     * */
+    @Override
+    public boolean deleteById(Long id) {
+        return this.removeById(id);
     }
 
     /**
@@ -80,10 +95,11 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M, 
      * @param obj
      * @return
      * */
-    @Override
-    public boolean modifyById(T obj) {
-        return this.updateById(obj);
-    }
+//    @Override
+//    public boolean modify(T obj) {
+//        Wrapper wrapper  = new QueryWrapper<>(obj);
+//        return this.update(wrapper);
+//    }
 
     /**
      * 根据id查找
@@ -92,8 +108,8 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M, 
      * @param id
      */
     @Override
-    public T getById(Long id) {
-        return this.selectById(id);
+    public T selectById(Long id) {
+        return this.getById(id);
     }
 
     /**
@@ -103,9 +119,9 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M, 
      * @return
      * */
     @Override
-    public List<T> list(T obj) {
-        Wrapper wrapper = new EntityWrapper<>(obj);
-        return this.selectList(wrapper);
+    public List<T> selectList(T obj) {
+        Wrapper wrapper = new QueryWrapper<>(obj);
+        return this.list(wrapper);
     }
 
     /**
@@ -115,7 +131,22 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M, 
      * @return
      * */
     @Override
-    public List<T> listById(List<Long> idList) {
-        return this.selectBatchIds(idList);
+    public Collection<T> selectByIds(List<Long> idList) {
+        return this.listByIds(idList);
+    }
+
+    /**
+     * 分页查询
+     *
+     * @param pageNo 页码
+     * @param pageSize 页数
+     * @param obj
+     * @return
+     * */
+    @Override
+    public IPage<T> selectPage(T obj, Integer pageNo, Integer pageSize) {
+        Page<T> page = new Page<>(pageNo, pageSize);
+        Wrapper wrapper = new QueryWrapper<>(obj);
+        return this.page(page, wrapper);
     }
 }

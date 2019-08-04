@@ -23,27 +23,27 @@ public class UsersController {
 
     @PostMapping
     public Object save(@RequestBody Users users) {
-        return usersService.save(users);
+        return usersService.insert(users);
     }
 
     @PostMapping("/userslist")
     public Object saveBatch(@RequestBody List<Users> objList) {
-        return usersService.saveBatch(objList);
+        return usersService.insertBatch(objList);
     }
 
     @DeleteMapping("/{id}")
     public Object removeById(@PathVariable Long id) {
-        return usersService.removeById(id);
+        return usersService.deleteById(id);
     }
 
     @DeleteMapping
     public Object remove(@RequestBody Users users) {
-        return usersService.remove(users);
+        return usersService.delete(users);
     }
 
     @DeleteMapping("/list")
     public Object removeBatch(@RequestBody List<Long> idList) {
-        return usersService.removeBatch(idList);
+        return usersService.deleteByIds(idList);
     }
 
 
@@ -54,19 +54,24 @@ public class UsersController {
 
     @GetMapping("/{id}")
     public Object getById(@PathVariable Long id) {
-        return usersService.getById(id);
+        return usersService.selectById(id);
     }
 
     @PostMapping("/list")
     public Object list(@RequestBody Users users) {
-        return usersService.list(users);
+        return usersService.selectList(users);
     }
 
     @PostMapping("/idList")
     public Object listById(@RequestBody List<Long> idList) {
-        return usersService.listById(idList);
+        return usersService.selectByIds(idList);
     }
 
-
+    @PostMapping("/page")
+    public Object page(@RequestBody Users users,
+                       @RequestParam(value = "pageNo", required = false, defaultValue = "1") Integer pageNo,
+                       @RequestParam(value = "pageSize", required = false, defaultValue = "2") Integer pageSize) {
+        return usersService.selectPage(users, pageNo, pageSize);
+    }
 }
 

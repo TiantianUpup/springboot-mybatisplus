@@ -1,6 +1,5 @@
 package com.h2t.study.service.impl;
 
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.h2t.study.mapper.UsersMapper;
 import com.h2t.study.pojo.Users;
 import com.h2t.study.service.BaseService;

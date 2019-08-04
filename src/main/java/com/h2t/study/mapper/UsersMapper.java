@@ -1,7 +1,11 @@
 package com.h2t.study.mapper;
-import com.baomidou.mybatisplus.mapper.BaseMapper;
+
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.h2t.study.pojo.Users;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * <p>
@@ -13,5 +17,6 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface UsersMapper extends BaseMapper<Users> {
+    IPage<Users> selectPageVo(Page page, @Param("username") String username);
 
 }

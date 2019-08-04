@@ -1,7 +1,10 @@
 package com.h2t.study.service;
 
-import com.baomidou.mybatisplus.service.IService;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -18,7 +21,7 @@ public interface BaseService<T> extends IService<T> {
      * @param obj
      * @return
      * */
-    boolean save(T obj);
+    boolean insert(T obj);
 
     /**
      * 批量添加
@@ -26,12 +29,12 @@ public interface BaseService<T> extends IService<T> {
      * @param objList
      * @return
      * */
-    boolean saveBatch(List<T> objList);
+    boolean insertBatch(List<T> objList);
 
     /**
      * 根据id删除
      * */
-    boolean removeById(Long id);
+    boolean modifyById(T obj);
 
     /**
      * 根据传入参数条件进行删除
@@ -39,7 +42,7 @@ public interface BaseService<T> extends IService<T> {
      * @param obj
      * @return
      * */
-    boolean remove(T obj);
+    boolean delete(T obj);
 
     /**
      * 批量删除
@@ -47,20 +50,20 @@ public interface BaseService<T> extends IService<T> {
      * @param idList
      * @return
      * */
-    boolean removeBatch(List<Long> idList);
+    boolean deleteByIds(List<Long> idList);
 
     /**
-     * 根据id进行更新
+     * 批量id删除
      *
-     * @param obj
+     * @param id
      * @return
      * */
-    boolean modifyById(T obj);
+    boolean deleteById(Long id);
 
     /**
      * 根据id查找
      * */
-    T getById(Long id);
+    T selectById(Long id);
 
     /**
      * 根据条件进行查询
@@ -68,7 +71,7 @@ public interface BaseService<T> extends IService<T> {
      * @param obj
      * @return
      * */
-    List<T> list(T obj);
+    List<T> selectList(T obj);
 
     /**
      * 根据id批量查询
@@ -76,5 +79,15 @@ public interface BaseService<T> extends IService<T> {
      * @param idList
      * @return
      * */
-    List<T> listById(List<Long> idList);
+    Collection<T> selectByIds(List<Long> idList);
+
+    /**
+     * 分页查询
+     *
+     * @param pageNo 页码
+     * @param pageSize 页数
+     * @param obj
+     * @return
+     * */
+    IPage<T> selectPage(T obj, Integer pageNo, Integer pageSize);
 }
