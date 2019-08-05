@@ -15,19 +15,7 @@ import org.springframework.stereotype.Component;
  * @Date 2019/08/02 16:11
  */
 @Configuration
-@Component
 public class MyBatisPlusConfig {
-    /**
-     * 性能分析拦截器，观察 SQL 执行情况及执行时长
-     */
-    @Bean
-    @Profile({"dev"})
-    public PerformanceInterceptor performanceInterceptor(){
-
-        //启用性能分析插件, SQL是否格式化 默认false,此处开启
-        return new PerformanceInterceptor().setFormat(true);
-    }
-
     // mybatis-plus分页插件
     @Bean
     public PaginationInterceptor paginationInterceptor() {
