@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 /**
- * TODO Description
+ * 用户实体类
  *
  * @author hetiantian
  * @version 1.0
