@@ -17,6 +17,5 @@ import org.apache.ibatis.annotations.Param;
  */
 @Mapper
 public interface UsersMapper extends BaseMapper<Users> {
-    IPage<Users> selectPageVo(Page page, @Param("username") String username);
 
 }

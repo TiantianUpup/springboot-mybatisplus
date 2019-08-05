@@ -2,6 +2,5 @@
 
 ### 环境
 - jdk 1.8
-- mybatis-plus 2.3
-- mybatisplus-spring-boot-starter 1.0.5
+- mybatisplus-spring-boot-starter 3.1.2
 

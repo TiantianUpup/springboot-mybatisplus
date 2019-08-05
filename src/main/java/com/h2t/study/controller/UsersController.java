@@ -33,6 +33,7 @@ public class UsersController {
 
     @DeleteMapping("/{id}")
     public Object removeById(@PathVariable Long id) {
+        System.out.println("delete....");
         return usersService.deleteById(id);
     }
 
