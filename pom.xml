@@ -8,11 +8,12 @@
         <version>2.1.6.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+
     <groupId>com.h2t.study</groupId>
     <artifactId>springboot-mybatisplus</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>springboot-mybatisplus</name>
-    <description>Demo project for Spring Boot</description>
+    <packaging>jar</packaging>
 
     <properties>
         <java.version>1.8</java.version>
@@ -62,6 +63,7 @@
     </dependencies>
 
     <build>
+        <finalName>${project.artifactId}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
