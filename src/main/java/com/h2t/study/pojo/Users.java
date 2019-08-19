@@ -12,7 +12,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
  * @Date 2019/08/02 16:38
  */
 @TableName(value = "users")
-public class Users extends Base {
+public class Users extends BasePO {
     @TableField(value = "user_name", exist = true)
     private String username;
 

@@ -1,19 +1,24 @@
 version: "2"
 services:
   web-service:
-    build: springboot.dockerfile
+    build:
+      context: .
+      dockerfile: springboot.dockerfile
     container_name: smweb-container
     ports:
-      - "8088:8888"
+      - "8081:8888"
     networks:
       - net-spring-db
     depends_on:
-      - db
+      - db-service
   db-service:
-    build: sql.dockerfile
+    build:
+      context: .
+      dockerfile: sql.dockerfile
     container_name: mysql-container
     ## command: --default-authentication-plugin=mysql_native_password
     restart: always
+    command: --default-authentication-plugin=mysql_native_password
     ports:
       - "3306:3306"
     networks:
@@ -24,6 +29,7 @@ services:
           MYSQL_DATABASE: rbac
           MYSQL_USER: h2t
           MYSQL_PASSWORD: 123456
+          MYSQL_ROOT_PASSWORD: 123456
 networks:
   net-spring-db:
     driver: bridge

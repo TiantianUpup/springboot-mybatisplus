@@ -12,7 +12,7 @@ import java.util.Date;
  * @Date 2019/08/02 16:39
  */
 @TableName(value = "base")
-public class Base {
+public class BasePO {
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
@@ -27,10 +27,10 @@ public class Base {
     @TableField(value = "gmt_modified", exist = true)
     protected Date gmtModified;
 
-    public Base() {
+    public BasePO() {
     }
 
-    public Base(Long id, Integer deleted, Date gmtCreate, Date gmtModify) {
+    public BasePO(Long id, Integer deleted, Date gmtCreate, Date gmtModify) {
         this.id = id;
         this.deleted = deleted;
         this.gmtCreate = gmtCreate;
@@ -72,7 +72,7 @@ public class Base {
 
     @Override
     public String toString() {
-        return "Base{" +
+        return "BasePO{" +
             "id=" + id +
             ", deleted=" + deleted +
             ", gmtCreate=" + gmtCreate +
