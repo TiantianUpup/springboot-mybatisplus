@@ -1,9 +1,7 @@
 version: "2"
 services:
   web-service:
-    build:
-      context: .
-      dockerfile: springboot.dockerfile
+    build: springboot.dockerfile
     container_name: smweb-container
     ports:
       - "8081:8888"
