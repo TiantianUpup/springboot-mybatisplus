@@ -19,7 +19,7 @@ services:
       dockerfile: springboot.dockerfile # 重命名dockerfile的文件名
     container_name: mysql-container
     restart: always
-    ports:
+    expose:
       - "3306:3306"
     networks:
       - net-spring-db
