@@ -11,18 +11,18 @@ services:
       - net-spring-db
     depends_on:
       - db-service
+    links:
+      - db-service
   db-service:
     build:
       context: . # dockerfile文件的目录
-      dockerfile: sql.dockerfile # 重命名dockerfile的文件名
+      dockerfile: springboot.dockerfile # 重命名dockerfile的文件名
     container_name: mysql-container
     restart: always
     ports:
       - "3306:3306"
     networks:
       - net-spring-db
-    ## environment:
-    ##  MYSQL_ROOT_PASSWORD: 123
     environment:
           MYSQL_DATABASE: rbac
           MYSQL_USER: h2t
