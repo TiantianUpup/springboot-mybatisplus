@@ -1,7 +1,9 @@
 version: "2"
 services:
   web-service:
-    build: springboot.dockerfile
+    build:
+      context: .
+      dockerfile: springboot.dockerfile
     container_name: smweb-container
     ports:
       - "8081:8888"
@@ -9,16 +11,17 @@ services:
       - net-spring-db
     depends_on:
       - db-service
+    links:
+      - db-service
   db-service:
     build:
-      context: .
-      dockerfile: sql.dockerfile
+      context: . # dockerfile文件的目录
+      dockerfile: sql.dockerfile # 重命名dockerfile的文件名
     container_name: mysql-container
     ## command: --default-authentication-plugin=mysql_native_password
     restart: always
-    command: --default-authentication-plugin=mysql_native_password
-#    ports:
-#      - "3306:3306"
+    expose:
+      - "3306:3306"
     networks:
       - net-spring-db
     ## environment:
