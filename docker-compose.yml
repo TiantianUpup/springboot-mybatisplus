@@ -17,19 +17,20 @@ services:
     build:
       context: . # dockerfile文件的目录
       dockerfile: sql.dockerfile # 重命名dockerfile的文件名
+    expose:
+      - "3306"
     container_name: mysql-container
     ## command: --default-authentication-plugin=mysql_native_password
     restart: always
-    expose:
-      - "3306:3306"
     networks:
       - net-spring-db
     ## environment:
     ##  MYSQL_ROOT_PASSWORD: 123
     environment:
-          MYSQL_DATABASE: rbac
+          MYSQL_DATABASE: test
           MYSQL_USER: h2t
           MYSQL_PASSWORD: 123456
+          MYSQL_ROOT_USER: root
           MYSQL_ROOT_PASSWORD: 123456
 networks:
   net-spring-db:
